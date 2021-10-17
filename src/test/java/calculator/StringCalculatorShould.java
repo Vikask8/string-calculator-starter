@@ -34,4 +34,19 @@ class StringCalculatorShould {
     return_error_msg_when_newLine_at_invalid_position() {
         assertEquals("Number expected but '\n' found at position 6.", given("1,2,5,\n3"));
     }
+       @Test
+    public void
+    return_error_msg_when_delimiter_at_last_position() {
+        assertEquals("Number expected but EOF found.", given("2,3,4.2,"));
+    }
+
+    @Test
+    public void
+    return_correct_sum_when_custom_delimiter_is_used() {
+        assertEquals("3", given("//;\n1;2"));
+        assertEquals("3", given("//|\n1|2"));
+        assertEquals("8", given("//@@\n1@@2@@5"));
+        assertEquals("5", given("//sep\n2sep3"));
+    }
+
 }
